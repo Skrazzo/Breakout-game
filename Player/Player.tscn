@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1hb4f8xiiuxx"]
+
+[ext_resource type="Texture2D" uid="uid://ctt4euku0jcij" path="res://Assets/49-Breakout-Tiles.png" id="1_y7s0w"]
+
+[sub_resource type="GDScript" id="GDScript_ttnvi"]
+script/source = "extends CharacterBody2D
+
+var speed = 500
+var friction = 200
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_pressed(\"move_right\"):
+		velocity.x = speed
+	elif Input.is_action_pressed(\"move_left\"):
+		velocity.x = -speed
+	
+	move_and_slide()
+	velocity = velocity.move_toward(Vector2.ZERO, friction)
+	
+	pass
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34y41"]
+radius = 16.0
+height = 122.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = SubResource("GDScript_ttnvi")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y7s0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_34y41")

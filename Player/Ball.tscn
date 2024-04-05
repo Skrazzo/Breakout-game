@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://2wp0m50mrupk"]
+
+[ext_resource type="Script" path="res://Player/Ball.gd" id="1_83f08"]
+[ext_resource type="Texture2D" uid="uid://cx0sjca68vedr" path="res://Assets/58-Breakout-Tiles.png" id="1_pxqpt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3e74y"]
+radius = 16.0
+
+[node name="Ball" type="CharacterBody2D"]
+script = ExtResource("1_83f08")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pxqpt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3e74y")
