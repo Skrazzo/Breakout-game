@@ -1,0 +1,17 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bcbd5rlv83via"]
+
+[ext_resource type="Texture2D" uid="uid://vc78if4moetn" path="res://Assets/29-Breakout-Tiles.png" id="1_ccrko"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fkguu"]
+texture = ExtResource("1_ccrko")
+texture_region_size = Vector2i(4, 4)
+1:0/size_in_atlas = Vector2i(2, 1)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -2, 4, -2, 4, 2, -4, 2)
+
+[resource]
+tile_size = Vector2i(4, 4)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_fkguu")
