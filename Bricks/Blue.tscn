@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b76uilwrij6r4"]
+
+[ext_resource type="Texture2D" uid="uid://c0oxfyjusdaa1" path="res://Assets/01-Breakout-Tiles.png" id="1_h03wj"]
+[ext_resource type="Script" path="res://Bricks/Brick.gd" id="1_xf78v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7b88i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h03wj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sirqy"]
+size = Vector2(96, 31)
+
+[node name="BlueBrick" type="CharacterBody2D"]
+script = ExtResource("1_xf78v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7b88i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_sirqy")
