@@ -35,6 +35,7 @@ func _process(delta):
 			direction = direction.bounce(collision.get_normal()) 
 			direction.x = bounce_direction_x
 			
+			
 		else: # Collides with anything else than a player
 			if collision.get_collider().get_meta('brick'):
 				collision.get_collider().hit()

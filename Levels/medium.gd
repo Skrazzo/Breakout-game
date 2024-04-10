@@ -5,7 +5,7 @@ var cell_size = [96, 32]
 var padding = 8
 
 var rows = 3
-var colls = 6
+var colls = 10
 var gap = (1100 - (padding * 2) - (wall_size[0] * 2) - (colls * cell_size[0])) / (colls - 1)
 
 var start_pos = [padding + wall_size[0], padding + wall_size[1]]
