@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://yxrt3tyvd3jj"]
+
+[ext_resource type="Script" path="res://Levels/easy.gd" id="1_4b8wo"]
+[ext_resource type="Texture2D" uid="uid://06np5vnsert" path="res://Assets/Levels/easy.jpg" id="1_850qo"]
+
+[node name="EasyLevel" type="Node2D"]
+script = ExtResource("1_4b8wo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_850qo")
+centered = false
