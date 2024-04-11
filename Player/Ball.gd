@@ -32,8 +32,10 @@ func _process(delta):
 		if collision.get_collider_id() == Global.player_id:
 			var bounce_direction_x = get_bounce_x_direction(collision)
 			# Get normal bounce, and change it to the new calculatedd bounce x direction
-			direction = direction.bounce(collision.get_normal()) 
+			direction = direction.bounce(collision.get_normal())
 			direction.x = bounce_direction_x
+			direction.y = -1
+			
 			
 			
 		else: # Collides with anything else than a player
@@ -49,10 +51,15 @@ func get_bounce_x_direction(collision: KinematicCollision2D):
 	var rel = collision.get_position().x - Global.player.global_position.x
 	# Now we need to get -1 to 1 value for direction
 	# So we take relative position and divide with players half width (To make 0 in the center)
-	return rel / (Global.player_width / 2)
+	var x_speed = rel / (Global.player_width / 2)
+	if x_speed > 1:
+		x_speed = 1
+	elif x_speed < -1:
+		x_speed = -1
 	
+	return x_speed
 	
-	
+
 	
 # Ball is not visible on the screen, so we need to restart our main scene
 func _on_visible_on_screen_notifier_2d_screen_exited():

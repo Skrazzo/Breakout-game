@@ -11,12 +11,14 @@ var gap = (1100 - (padding * 2) - (wall_size[0] * 2) - (colls * cell_size[0])) /
 var start_pos = [padding + wall_size[0], padding + wall_size[1]]
 
 var blue_brick = preload("res://Bricks/Blue.tscn")
+var green_brick = preload("res://Bricks/Green.tscn")
+var brick_arr = [blue_brick, green_brick]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for j in range(rows):
 		for i in range(colls):
-			var brick = blue_brick.instantiate()
+			var brick = brick_arr.pick_random().instantiate()
 			add_child(brick)
 			
 			brick.position.x = start_pos[0] + (cell_size[0] * i) + (gap * i)

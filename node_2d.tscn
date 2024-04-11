@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://cut5rcry3hkl8"]
 
-[ext_resource type="PackedScene" uid="uid://dtwjpuprsi60y" path="res://Levels/medium.tscn" id="1_1j7ah"]
+[ext_resource type="PackedScene" uid="uid://yxrt3tyvd3jj" path="res://Levels/easy.tscn" id="1_764ki"]
 [ext_resource type="PackedScene" uid="uid://d1hb4f8xiiuxx" path="res://Player/Player.tscn" id="1_ftisq"]
 [ext_resource type="PackedScene" uid="uid://2wp0m50mrupk" path="res://Player/Ball.tscn" id="2_vhsr8"]
 [ext_resource type="TileSet" uid="uid://bcbd5rlv83via" path="res://Tileset/Walls.tres" id="3_f14vs"]
 
 [node name="World" type="Node2D"]
 
-[node name="Medium" parent="." instance=ExtResource("1_1j7ah")]
+[node name="EasyLevel" parent="." instance=ExtResource("1_764ki")]
+scale = Vector2(1, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_ftisq")]
 position = Vector2(541, 749)
