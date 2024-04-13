@@ -8,6 +8,7 @@
 [node name="World" type="Node2D"]
 
 [node name="DynamicLevel" parent="." instance=ExtResource("1_764ki")]
+difficulty = 1
 
 [node name="Player" parent="." instance=ExtResource("1_ftisq")]
 position = Vector2(541, 749)

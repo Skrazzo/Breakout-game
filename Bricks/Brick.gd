@@ -3,7 +3,6 @@ extends CharacterBody2D
 var hp = 1
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_meta('brick', true) # set metadate to brick
@@ -11,15 +10,25 @@ func _ready():
 	pass # Replace with function body.
 
 
-func hit(collision_position, collider_position):
-	# Calculate where collision happened on the brick
-	var brick_collided_pos = Vector2(collision_position.x - collider_position.x, collision_position.y - collider_position.y)
-	$CPUParticles2D.position = brick_collided_pos
-	$CPUParticles2D.emitting = true
+func hit(collision_position, collider_position, angle):
 	
 	hp -= 1
 	if hp <= 0:
 		Global.brick_count -= 1
-		queue_free() # Removes child
+		
+		$CPUParticles2D_Explosion.emitting = true
+		$AnimatedSprite2D.visible = false
+		$CollisionShape2D.disabled = true
 	else: 
+		# Calculate where collision happened on the brick
+		var brick_collided_pos = Vector2(collision_position.x - collider_position.x, collision_position.y - collider_position.y)
+		$CPUParticles2D.position = brick_collided_pos
+		$CPUParticles2D.rotation = angle
+		$CPUParticles2D.emitting = true
+		
 		$AnimatedSprite2D.frame += 1
+
+
+func _on_cpu_particles_2d_explosion_finished():
+	queue_free() # Removes child
+	pass # Replace with function body.

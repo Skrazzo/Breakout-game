@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy7e712p804pt"]
+[gd_scene load_steps=8 format=3 uid="uid://dy7e712p804pt"]
 
 [ext_resource type="Script" path="res://Bricks/Brick.gd" id="1_le6le"]
 [ext_resource type="Texture2D" uid="uid://tvnf8kokqo" path="res://Assets/03-Breakout-Tiles.png" id="2_46jo3"]
@@ -25,6 +25,10 @@ size = Vector2(96, 32)
 min_value = -1.0
 _data = [Vector2(0.13245, -0.694149), 0.0, 0.0, 0, 0, Vector2(1, 0.930851), 3.87345, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_unw5e"]
+_data = [Vector2(0.0165563, 1), 0.0, 0.0, 0, 0, Vector2(0.57947, 0.472739), -2.7036, -2.7036, 0, 0, Vector2(0.980132, 0.126995), -0.416146, 0.0, 0, 0]
+point_count = 3
 
 [node name="GreenBrick" type="CharacterBody2D"]
 script = ExtResource("1_le6le")
@@ -56,3 +60,24 @@ scale_amount_max = 2.5
 color = Color(0.435294, 0.886275, 0.568627, 1)
 hue_variation_max = 0.2
 hue_variation_curve = SubResource("Curve_kjd5e")
+
+[node name="CPUParticles2D_Explosion" type="CPUParticles2D" parent="."]
+position = Vector2(48, 16)
+emitting = false
+amount = 200
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_unw5e")
+color = Color(0.435294, 0.886275, 0.568627, 1)
+hue_variation_max = 0.2
+hue_variation_curve = SubResource("Curve_kjd5e")
+
+[connection signal="finished" from="CPUParticles2D_Explosion" to="." method="_on_cpu_particles_2d_explosion_finished"]

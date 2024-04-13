@@ -39,14 +39,14 @@ func _process(delta):
 			direction.y = -1
 		else: # Collides with anything else than a player
 			if collision.get_collider().get_meta('brick'):
-				collision.get_collider().hit(collision.get_position(), collision.get_collider().position)
+				var angle = rad_to_deg(collision.get_angle()) - 90 # Calculate angle
+				collision.get_collider().hit(collision.get_position(), collision.get_collider().position, angle)
 				
 				# Check if we have won the level
 				if Global.brick_count <= 0:
+					reset()
 					emit_signal('level_done')
 					print('Level done')
-					reset()
-					
 			direction = direction.bounce(collision.get_normal())
 		
 	pass
