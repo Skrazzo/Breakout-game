@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy7e712p804pt"]
+[gd_scene load_steps=7 format=3 uid="uid://dy7e712p804pt"]
 
 [ext_resource type="Script" path="res://Bricks/Brick.gd" id="1_le6le"]
 [ext_resource type="Texture2D" uid="uid://tvnf8kokqo" path="res://Assets/03-Breakout-Tiles.png" id="2_46jo3"]
@@ -21,6 +21,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sirqy"]
 size = Vector2(96, 32)
 
+[sub_resource type="Curve" id="Curve_kjd5e"]
+min_value = -1.0
+_data = [Vector2(0.13245, -0.694149), 0.0, 0.0, 0, 0, Vector2(1, 0.930851), 3.87345, 0.0, 0, 0]
+point_count = 2
+
 [node name="GreenBrick" type="CharacterBody2D"]
 script = ExtResource("1_le6le")
 
@@ -31,3 +36,23 @@ centered = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(48, 16)
 shape = SubResource("RectangleShape2D_sirqy")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(48, 41)
+rotation = 1.5708
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.75
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2(100, 0)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 50.0
+scale_amount_min = 0.5
+scale_amount_max = 2.5
+color = Color(0.435294, 0.886275, 0.568627, 1)
+hue_variation_max = 0.2
+hue_variation_curve = SubResource("Curve_kjd5e")

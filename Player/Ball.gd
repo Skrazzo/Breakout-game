@@ -1,16 +1,18 @@
 extends CharacterBody2D
 
-var rng = RandomNumberGenerator.new()
+var start_y_position = 710
 var speed = 500
 
 # Generate random start direction for the ball
-var direction = Vector2(rng.randf_range(-1, 1), -1)
+var direction = Vector2(randf_range(-1, 1), -1)
 var isActive = false
 var gameOver = true
 
+signal level_done
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position.x = get_viewport_rect().size.x / 2
+	reset()
 	pass # Replace with function body.
 
 
@@ -35,12 +37,16 @@ func _process(delta):
 			direction = direction.bounce(collision.get_normal())
 			direction.x = bounce_direction_x
 			direction.y = -1
-			
-			
-			
 		else: # Collides with anything else than a player
 			if collision.get_collider().get_meta('brick'):
-				collision.get_collider().hit()
+				collision.get_collider().hit(collision.get_position(), collision.get_collider().position)
+				
+				# Check if we have won the level
+				if Global.brick_count <= 0:
+					emit_signal('level_done')
+					print('Level done')
+					reset()
+					
 			direction = direction.bounce(collision.get_normal())
 		
 	pass
@@ -63,6 +69,12 @@ func get_bounce_x_direction(collision: KinematicCollision2D):
 	
 # Ball is not visible on the screen, so we need to restart our main scene
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	gameOver = true
 	get_tree().change_scene_to_file("res://node_2d.tscn")
 	pass # Replace with function body.
+
+func reset():
+	direction = Vector2(randf_range(-1, 1), -1)
+	isActive = false
+	gameOver = true
+	position.x = get_viewport_rect().size.x / 2
+	position.y = start_y_position

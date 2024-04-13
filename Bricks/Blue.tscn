@@ -27,3 +27,16 @@ centered = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(48, 16.25)
 shape = SubResource("RectangleShape2D_sirqy")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(49, 31)
+rotation = 1.5708
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 130.43
+color = Color(0.509804, 0.803922, 1, 1)

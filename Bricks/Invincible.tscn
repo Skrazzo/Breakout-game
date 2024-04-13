@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0qe2tqoykjbx"]
+
+[ext_resource type="Texture2D" uid="uid://ir7wd3x4mtkp" path="res://Assets/17-Breakout-Tiles.png" id="1_xotal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fccp"]
+size = Vector2(96, 32)
+
+[node name="Invincible" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xotal")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(48, 16)
+shape = SubResource("RectangleShape2D_0fccp")
