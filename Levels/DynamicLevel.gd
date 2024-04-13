@@ -20,6 +20,8 @@ var invincible_brick = preload("res://Bricks/Invincible.tscn")
 # from 1 to 5
 @export_range(1,5) var difficulty = 1
 
+var heart = preload("res://Components/Heart.tscn")
+var heart_width = heart.instantiate().get_node("Heart").texture.get_width() * heart.instantiate().get_node("Heart").scale.x
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,8 +35,6 @@ func _ready():
 	var no_brick_prob = green_prob + 0.6 - (0.1 * difficulty)
 	var purple_prob = no_brick_prob + 0.01
 	var invincible_prob = purple_prob + 0 + (0.03 * difficulty)
-	
-	# print('Hello world')
 	
 	for j in range(rows):
 		for i in range(colls):
@@ -52,9 +52,8 @@ func _ready():
 			else: # normal brick
 				init_brick(blue_brick.instantiate(), j, i)
 				Global.brick_count += 1
-			
 	
-	print('Brick count: ', Global.brick_count)
+	draw_hearts()
 	pass # Replace with function body.
 
 func init_brick(brick, row, col):
@@ -62,7 +61,13 @@ func init_brick(brick, row, col):
 	brick.position.x = start_pos[0] + (cell_size[0] * col)
 	brick.position.y = start_pos[1] + (cell_size[1] * row)
 
-
+func draw_hearts():
+	# Adding hearts
+	for x in range(Global.player_hearts):
+		var tmp_heart = heart.instantiate()
+		add_child(tmp_heart)
+		tmp_heart.position.x = 16 + ((heart_width + 4) * x)
+		tmp_heart.position.y = 16
 
 func _on_ball_level_done():
 	_ready()
