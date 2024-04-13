@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr3a3dfeoky8r"]
+
+[ext_resource type="Script" path="res://Player/HeartsDisplay.gd" id="1_rh0jk"]
+
+[node name="HeartsDisplay" type="Node2D"]
+script = ExtResource("1_rh0jk")

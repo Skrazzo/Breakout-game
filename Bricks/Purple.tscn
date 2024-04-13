@@ -29,6 +29,7 @@ point_count = 2
 
 [node name="PurpleBrick" type="CharacterBody2D"]
 script = ExtResource("1_gbdiv")
+metadata/heart_brick = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7b88i")

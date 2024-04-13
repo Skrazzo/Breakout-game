@@ -9,6 +9,8 @@ var isActive = false
 var gameOver = true
 
 signal level_done
+signal player_damage
+signal player_heal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,7 +40,7 @@ func _process(delta):
 			direction.x = bounce_direction_x
 			direction.y = -1
 		else: # Collides with anything else than a player
-			if collision.get_collider().get_meta('brick'):
+			if collision.get_collider().get_meta('brick'): # If collides with a brick
 				var angle = rad_to_deg(collision.get_angle()) - 90 # Calculate angle
 				collision.get_collider().hit(collision.get_position(), collision.get_collider().position, angle)
 				
@@ -47,8 +49,14 @@ func _process(delta):
 					reset()
 					emit_signal('level_done')
 					print('Level done')
+				
+				# Check if collision happened with the heart brick
+				# then we need to give additional heart to the player
+				var collider = collision.get_collider()
+				if collider.has_meta('heart_brick') and collider.get_meta('heart_brick'):
+					emit_signal('player_heal')
+				
 			direction = direction.bounce(collision.get_normal())
-		
 	pass
 
 func get_bounce_x_direction(collision: KinematicCollision2D):
@@ -69,7 +77,14 @@ func get_bounce_x_direction(collision: KinematicCollision2D):
 	
 # Ball is not visible on the screen, so we need to restart our main scene
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	get_tree().change_scene_to_file("res://node_2d.tscn")
+	
+	emit_signal('player_damage')
+	if Global.player_hearts <= 0: # If player is dead, reset the game
+		Global.player_hearts = 1
+		get_tree().change_scene_to_file("res://node_2d.tscn")
+	else:
+		reset()
+	
 	pass # Replace with function body.
 
 func reset():

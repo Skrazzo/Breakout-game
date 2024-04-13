@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg0rh2wl88cud"]
+[gd_scene load_steps=3 format=3 uid="uid://dg0rh2wl88cud"]
 
 [ext_resource type="Texture2D" uid="uid://dsdx6c0u3w48u" path="res://Assets/heart.png" id="1_nn63d"]
 
+[sub_resource type="GDScript" id="GDScript_70xvg"]
+
 [node name="Heart" type="Node2D"]
+script = SubResource("GDScript_70xvg")
 
 [node name="Heart" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
