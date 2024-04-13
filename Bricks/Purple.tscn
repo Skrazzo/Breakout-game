@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwf85iio13s4e"]
+
+[ext_resource type="Script" path="res://Bricks/Brick.gd" id="1_gbdiv"]
+[ext_resource type="Texture2D" uid="uid://pfoxu00fg2qg" path="res://Assets/05-Breakout-Tiles.png" id="2_bdhlc"]
+[ext_resource type="Texture2D" uid="uid://dsdx6c0u3w48u" path="res://Assets/heart.png" id="3_61cqx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7b88i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bdhlc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sirqy"]
+size = Vector2(96, 31.5)
+
+[sub_resource type="Curve" id="Curve_xh52p"]
+_data = [Vector2(0.0165563, 0.222074), 0.0, 0.0, 0, 0, Vector2(0.556291, 0.170213), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.416146, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_shcua"]
+min_value = -1.0
+_data = [Vector2(0.13245, -0.694149), 0.0, 0.0, 0, 0, Vector2(1, 0.930851), 3.87345, 0.0, 0, 0]
+point_count = 2
+
+[node name="PurpleBrick" type="CharacterBody2D"]
+script = ExtResource("1_gbdiv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7b88i")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(48, 16.25)
+shape = SubResource("RectangleShape2D_sirqy")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(49, 31)
+rotation = 1.5708
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 130.43
+color = Color(0.509804, 0.803922, 1, 1)
+
+[node name="CPUParticles2D_Explosion" type="CPUParticles2D" parent="."]
+position = Vector2(48, 16)
+emitting = false
+amount = 200
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+texture = ExtResource("3_61cqx")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_xh52p")
+color = Color(0.905882, 0.886275, 1, 1)
+hue_variation_max = 0.1
+hue_variation_curve = SubResource("Curve_shcua")
+
+[connection signal="finished" from="CPUParticles2D_Explosion" to="." method="_on_cpu_particles_2d_explosion_finished"]

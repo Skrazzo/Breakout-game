@@ -14,6 +14,7 @@ var start_pos = [padding + wall_size[0], padding + wall_size[1]]
 # Bricks
 var blue_brick = preload("res://Bricks/Blue.tscn")
 var green_brick = preload("res://Bricks/Green.tscn")
+var purple_brick = preload("res://Bricks/Purple.tscn")
 var invincible_brick = preload("res://Bricks/Invincible.tscn")
 
 # from 1 to 5
@@ -30,7 +31,8 @@ func _ready():
 	# Calculating probabilities
 	var green_prob = 0.1 + (0.05 * difficulty)
 	var no_brick_prob = green_prob + 0.6 - (0.1 * difficulty)
-	var invincible_prob = no_brick_prob + 0 + (0.03 * difficulty)
+	var purple_prob = no_brick_prob + 0.01
+	var invincible_prob = purple_prob + 0 + (0.03 * difficulty)
 	
 	# print('Hello world')
 	
@@ -43,6 +45,8 @@ func _ready():
 				Global.brick_count += 1
 			elif rand < no_brick_prob: # empty space
 				continue
+			elif rand < purple_prob:
+				init_brick(purple_brick.instantiate(), j, i)
 			elif rand < invincible_prob: # invincible brick
 				init_brick(invincible_brick.instantiate(), j, i)
 			else: # normal brick
