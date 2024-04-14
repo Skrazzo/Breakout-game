@@ -72,7 +72,7 @@ func get_bounce_x_direction(collision: KinematicCollision2D):
 		x_speed = -1
 	
 	return x_speed
-	
+	pass
 
 	
 # Ball is not visible on the screen, so we need to restart our main scene
@@ -93,3 +93,4 @@ func reset():
 	gameOver = true
 	position.x = get_viewport_rect().size.x / 2
 	position.y = start_y_position
+	pass

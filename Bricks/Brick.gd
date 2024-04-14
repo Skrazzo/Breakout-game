@@ -27,6 +27,7 @@ func hit(collision_position, collider_position, angle):
 		$CPUParticles2D.emitting = true
 		
 		$AnimatedSprite2D.frame += 1
+	pass
 
 
 func _on_cpu_particles_2d_explosion_finished():

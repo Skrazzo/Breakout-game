@@ -23,9 +23,7 @@ var invincible_brick = preload("res://Bricks/Invincible.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Global.brick_count = 0
-	print('Brick count: ', Global.brick_count)
-	
+	Global.brick_count = 0	
 	rows += difficulty
 	
 	# Calculating probabilities
@@ -45,6 +43,7 @@ func _ready():
 				continue
 			elif rand < purple_prob:
 				init_brick(purple_brick.instantiate(), j, i)
+				Global.brick_count += 1
 			elif rand < invincible_prob: # invincible brick
 				init_brick(invincible_brick.instantiate(), j, i)
 			else: # normal brick
