@@ -17,9 +17,7 @@ var green_brick = preload("res://Bricks/Green.tscn")
 var purple_brick = preload("res://Bricks/Purple.tscn")
 var invincible_brick = preload("res://Bricks/Invincible.tscn")
 
-# Power up
-var power_up_class = preload("res://Power ups/PowerUp.tscn")
-var active_power_ups = []
+
 
 # from 1 to 5
 @export_range(1,5) var difficulty = 1
@@ -52,7 +50,6 @@ func _ready():
 			else: # normal brick
 				init_brick(blue_brick.instantiate(), j, i)
 				Global.brick_count += 1
-	spawn_power_up()
 	pass # Replace with function body.
 
 func init_brick(brick, row, col):
@@ -61,11 +58,7 @@ func init_brick(brick, row, col):
 	brick.position.y = start_pos[1] + (cell_size[1] * row)
 	pass
 
-func spawn_power_up():
-	var test_pwr = power_up_class.instantiate()
-	test_pwr.position = Vector2(500, 500)
-	add_child(test_pwr)
-	pass
+
 
 func _on_ball_level_done():
 	_ready()

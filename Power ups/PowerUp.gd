@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 # Power up class, and then meta
 var power_ups = [
-	["res://Power ups/Assets/health.png", 'heath_power_up']
+	["res://Power ups/Assets/health.png", 'health']
 ]
 
 # Called when the node enters the scene tree for the first time.

@@ -47,6 +47,11 @@ func reset():
 
 func handle_powerup(collider):
 	collider.queue_free()
+	match collider.get_meta('powerup'):
+		'health':
+			var parent_node = get_parent()
+			var heart_display = parent_node.get_node(\"HeartsDisplay\")
+			heart_display.add_heart()
 
 func _on_ball_level_done():
 	reset()
