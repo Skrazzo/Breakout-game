@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpa7wf4va5w10"]
+[gd_scene load_steps=9 format=3 uid="uid://dpa7wf4va5w10"]
 
+[ext_resource type="Script" path="res://Components/bullet.gd" id="1_02e2n"]
 [ext_resource type="Texture2D" uid="uid://bmvddkuwkt277" path="res://Assets/Bullet/bullet 1.png" id="1_3g2pa"]
 [ext_resource type="Texture2D" uid="uid://isuybonbqrmf" path="res://Assets/Bullet/bullet 2.png" id="2_k1hkg"]
 [ext_resource type="Texture2D" uid="uid://md5qpwcsckhp" path="res://Assets/Bullet/bullet 3.png" id="3_nkbqv"]
@@ -25,12 +26,43 @@ animations = [{
 radius = 8.0
 height = 18.0
 
+[sub_resource type="Curve" id="Curve_2s0xu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0659341), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vxibb"]
+_data = [Vector2(0, 0.0659341), 0.0, 2.62303, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Bullet" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_02e2n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_svl7g")
-frame_progress = 0.107999
+frame_progress = 0.48349
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_mskva")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 4)
+rotation = 1.5708
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+gravity = Vector2(0, 25)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+tangential_accel_min = -50.0
+tangential_accel_max = 50.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_2s0xu")
+color = Color(1, 0.509804, 0.0823529, 1)
+hue_variation_max = 0.2
+hue_variation_curve = SubResource("Curve_vxibb")
+
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]

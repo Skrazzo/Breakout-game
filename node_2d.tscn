@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://2wp0m50mrupk" path="res://Player/Ball.tscn" id="2_vhsr8"]
 [ext_resource type="TileSet" uid="uid://bcbd5rlv83via" path="res://Tileset/Walls.tres" id="3_f14vs"]
 [ext_resource type="PackedScene" uid="uid://dr3a3dfeoky8r" path="res://Player/HeartsDisplay.tscn" id="5_lgkmt"]
-[ext_resource type="PackedScene" uid="uid://ckdx87qsn1w0c" path="res://Power ups/PowerUp.tscn" id="6_xq7vg"]
+[ext_resource type="PackedScene" uid="uid://dpa7wf4va5w10" path="res://Components/bullet.tscn" id="6_462af"]
 
 [node name="World" type="Node2D"]
 
@@ -26,8 +26,8 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 1342177280, 65536, 65536, 1342177
 
 [node name="HeartsDisplay" parent="." instance=ExtResource("5_lgkmt")]
 
-[node name="PowerUp" parent="." instance=ExtResource("6_xq7vg")]
-position = Vector2(540, 686)
+[node name="Bullet" parent="." instance=ExtResource("6_462af")]
+position = Vector2(399, 649)
 
 [connection signal="level_done" from="Ball" to="DynamicLevel" method="_on_ball_level_done"]
 [connection signal="level_done" from="Ball" to="Player" method="_on_ball_level_done"]

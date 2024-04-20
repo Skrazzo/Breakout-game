@@ -38,7 +38,7 @@ func hit(collision_position, collider_position, angle):
 
 func spawn_power_up():
 	var rnd = randf()
-	if rnd > 0.09:
+	if rnd > 0.1:
 		return
 	
 	var pwr = power_up_class.instantiate()

@@ -59,6 +59,8 @@ fire={
 
 2d_physics/layer_2="Bricks"
 2d_physics/layer_3="Powerups"
+2d_physics/layer_4="Bullet"
+2d_physics/layer_5="Walls"
 
 [rendering]
 

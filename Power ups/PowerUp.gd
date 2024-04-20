@@ -9,7 +9,7 @@ var power_ups = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity = Vector2(0, 0.5)
+	velocity = Vector2(0, 4)
 	
 	var rnd = power_ups.pick_random()
 	
