@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpa7wf4va5w10"]
+
+[ext_resource type="Texture2D" uid="uid://bmvddkuwkt277" path="res://Assets/Bullet/bullet 1.png" id="1_3g2pa"]
+[ext_resource type="Texture2D" uid="uid://isuybonbqrmf" path="res://Assets/Bullet/bullet 2.png" id="2_k1hkg"]
+[ext_resource type="Texture2D" uid="uid://md5qpwcsckhp" path="res://Assets/Bullet/bullet 3.png" id="3_nkbqv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svl7g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3g2pa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k1hkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nkbqv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mskva"]
+radius = 8.0
+height = 18.0
+
+[node name="Bullet" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_svl7g")
+frame_progress = 0.107999
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_mskva")

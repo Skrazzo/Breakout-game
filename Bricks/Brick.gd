@@ -8,6 +8,9 @@ var active_power_ups = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Set bricks collision layer
+	set_collision_layer_value(1, false)
+	set_collision_layer_value(2, true)
 	set_meta('brick', true) # set metadate to brick
 	hp = $AnimatedSprite2D.get_sprite_frames().get_frame_count('default') # update hp with frame count
 	pass # Replace with function body.
