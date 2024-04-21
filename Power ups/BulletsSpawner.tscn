@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr12kqeym48ok"]
+
+[ext_resource type="Script" path="res://Power ups/BulletsSpawner.gd" id="1_x5fu0"]
+
+[node name="BulletsSpawner" type="Node2D"]
+script = ExtResource("1_x5fu0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

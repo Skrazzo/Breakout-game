@@ -11,6 +11,8 @@ var y_position = 750
 var speed = 600
 var friction = 200
 
+signal BulletPowerUp
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset()
@@ -52,10 +54,13 @@ func handle_powerup(collider):
 			var parent_node = get_parent()
 			var heart_display = parent_node.get_node(\"HeartsDisplay\")
 			heart_display.add_heart()
+		'bullet':
+			emit_signal(\"BulletPowerUp\")
 
 func _on_ball_level_done():
 	reset()
 	pass # Replace with function body.
+
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_426v7"]

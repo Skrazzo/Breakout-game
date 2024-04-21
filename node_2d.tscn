@@ -5,11 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://2wp0m50mrupk" path="res://Player/Ball.tscn" id="2_vhsr8"]
 [ext_resource type="TileSet" uid="uid://bcbd5rlv83via" path="res://Tileset/Walls.tres" id="3_f14vs"]
 [ext_resource type="PackedScene" uid="uid://dr3a3dfeoky8r" path="res://Player/HeartsDisplay.tscn" id="5_lgkmt"]
-[ext_resource type="PackedScene" uid="uid://dpa7wf4va5w10" path="res://Components/bullet.tscn" id="6_462af"]
+[ext_resource type="PackedScene" uid="uid://cr12kqeym48ok" path="res://Power ups/BulletsSpawner.tscn" id="6_lkupd"]
 
 [node name="World" type="Node2D"]
 
 [node name="DynamicLevel" parent="." instance=ExtResource("1_764ki")]
+difficulty = 5
 
 [node name="Player" parent="." instance=ExtResource("1_ftisq")]
 position = Vector2(541, 749)
@@ -26,9 +27,10 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 1342177280, 65536, 65536, 1342177
 
 [node name="HeartsDisplay" parent="." instance=ExtResource("5_lgkmt")]
 
-[node name="Bullet" parent="." instance=ExtResource("6_462af")]
-position = Vector2(399, 649)
+[node name="BulletsSpawner" parent="." instance=ExtResource("6_lkupd")]
+position = Vector2(533, 485)
 
+[connection signal="BulletPowerUp" from="Player" to="BulletsSpawner" method="_on_player_bullet_power_up"]
 [connection signal="level_done" from="Ball" to="DynamicLevel" method="_on_ball_level_done"]
 [connection signal="level_done" from="Ball" to="Player" method="_on_ball_level_done"]
 [connection signal="player_damage" from="Ball" to="HeartsDisplay" method="_on_ball_player_damage"]

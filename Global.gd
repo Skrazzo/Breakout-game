@@ -6,3 +6,5 @@ var player = null
 
 var brick_count = null
 var player_hearts = 1
+
+

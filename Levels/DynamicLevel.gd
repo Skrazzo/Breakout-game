@@ -24,7 +24,8 @@ var invincible_brick = preload("res://Bricks/Invincible.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Global.brick_count = 0	
+	Global.brick_count = 0
+	
 	rows += difficulty
 	
 	# Calculating probabilities
