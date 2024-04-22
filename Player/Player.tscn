@@ -10,11 +10,18 @@ var start_position = Vector2(0, 0)
 var y_position = 750
 var speed = 600
 var friction = 200
-
+var start_scale = 0.7
+var scale_power_up = 1.1
 signal BulletPowerUp
+
+func rescale(scale):
+	var a = Vector2(scale, scale)
+	$CollisionShape2D.scale = a
+	$Sprite2D.scale = a
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$ScaleTimer.start(10)
 	reset()
 	pass # Replace with function body.
 
@@ -39,12 +46,17 @@ func _process(delta):
 			handle_powerup(collider)
 	pass
 
+func get_width():
+	# Lets get players width, we do that by getting texture size (Image) and then multiplying that by scale to get pixels
+	Global.player_width = $Sprite2D.texture.get_size().x * self.scale.x
+	print('ply width: ',Global.player_width)
+	
 func reset():
+	
 	position.x = get_viewport_rect().size.x / 2
 	Global.player_id = get_instance_id() # set current player id
 	
-	# Lets get players width, we do that by getting texture size (Image) and then multiplying that by scale to get pixels
-	Global.player_width = $Sprite2D.texture.get_size().x * $Sprite2D.scale.x
+	get_width()
 	Global.player = self
 
 func handle_powerup(collider):
@@ -56,27 +68,41 @@ func handle_powerup(collider):
 			heart_display.add_heart()
 		'bullet':
 			emit_signal(\"BulletPowerUp\")
+		'scale':
+			rescale(2)
+			$ScaleTimer.start(10)
 
 func _on_ball_level_done():
 	reset()
 	pass # Replace with function body.
 
+
+
+func _on_scale_timer_timeout():
+	rescale(start_scale)
+	pass # Replace with function body.
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_426v7"]
-radius = 11.0
-height = 84.0
+radius = 15.5172
+height = 120.69
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-scale = Vector2(1.16, 1.16)
 collision_mask = 21
 script = SubResource("GDScript_ttnvi")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.69, 0.69)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_y7s0w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
+scale = Vector2(0.6, 0.6)
 shape = SubResource("CapsuleShape2D_426v7")
+
+[node name="ScaleTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="ScaleTimer" to="." method="_on_scale_timer_timeout"]
